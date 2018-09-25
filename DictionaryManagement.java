@@ -14,18 +14,16 @@ public class DictionaryManagement {
         int num = scan.nextInt();
         scan.nextLine();
 
-        Word temp = new Word();
+
 
         for(int i = 0; i < num; i++){
-
+            Word temp = new Word();
             System.out.println("Word:" + (i + 1));
             {
                 System.out.print("Enter English word: ");
-
                 String s = scan.nextLine();
                 temp.setWord_target(s);
                 s = "";
-
 
                 System.out.print("Enter Vietnamese mean: ");
                 String s2 = scan.nextLine();
@@ -34,10 +32,7 @@ public class DictionaryManagement {
             }
 
             words.add(temp);
-
         }
-
-
     }
     public int setNum(){
         return scan.nextInt();
