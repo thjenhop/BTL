@@ -1,8 +1,8 @@
 package com.company.BTL;
 
 import java.util.Vector;
-import com.company.BTL.DictionaryManagement;
-import com.company.BTL.Word;
+//import com.company.BTL.DictionaryManagement.*;
+//import com.company.BTL.Word.*;
 
 public class DictionaryCommandLine {
 
@@ -16,8 +16,9 @@ public class DictionaryCommandLine {
 
     }
     public void dictionaryBasic(Vector<Word> words){
-        showAllWords(words);
         DictionaryManagement temp = new DictionaryManagement();
         temp.insertFromCommandLine(words);
+        showAllWords(words);
+
     }
 }

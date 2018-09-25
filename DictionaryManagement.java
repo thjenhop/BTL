@@ -1,7 +1,7 @@
 package com.company.BTL;
 import java.util.Scanner;
 import java.util.Vector;
-import com.company.BTL.Word;
+//import com.company.BTL.Word.*;
 //import com.company.BTL.
 
 public class DictionaryManagement {
@@ -12,17 +12,26 @@ public class DictionaryManagement {
 
         System.out.print("Enter number of Disctionary: ");
         int num = scan.nextInt();
+        scan.nextLine();
 
         Word temp = new Word();
 
         for(int i = 0; i < num; i++){
-            System.out.println("Word:" + i + 1);
-            System.out.print("Enter English word: ");
 
-            temp.setWord_target(scan.nextLine());
+            System.out.println("Word:" + (i + 1));
+            {
+                System.out.print("Enter English word: ");
 
-            System.out.print("Enter Vietnamese mean: ");
-            temp.setWord_explain(scan.nextLine());
+                String s = scan.nextLine();
+                temp.setWord_target(s);
+                s = "";
+
+
+                System.out.print("Enter Vietnamese mean: ");
+                String s2 = scan.nextLine();
+                temp.setWord_explain(s2);
+                s2 = "";
+            }
 
             words.add(temp);
 
@@ -30,5 +39,13 @@ public class DictionaryManagement {
 
 
     }
+    public int setNum(){
+        return scan.nextInt();
+    }
+    //public
+    public void insertFromFile(String linkFile){
+
+    }
+
 
 }
