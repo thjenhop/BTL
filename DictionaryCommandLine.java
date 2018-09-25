@@ -1,6 +1,8 @@
 package com.company.BTL;
 
 import java.util.Vector;
+import com.company.BTL.DictionaryManagement;
+import com.company.BTL.Word;
 
 public class DictionaryCommandLine {
 
