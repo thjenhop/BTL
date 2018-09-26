@@ -19,3 +19,4 @@ public class DictionaryCommandLine {
         temp.insertFromCommandLine(words);
     }
 }
+      
