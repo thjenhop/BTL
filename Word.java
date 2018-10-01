@@ -1,5 +1,4 @@
-package com.company.BTL;
-
+package com.company;
 public class Word {
 
     String word_target;
@@ -23,4 +22,13 @@ public class Word {
     public void setWord_explain(String word_explain) {
         this.word_explain = word_explain;
     }
+
+    public Word(){
+
+    }
+    public Word(String word, String mean){
+        this.setWord_target(word);
+        this.setWord_explain(mean);
+    }
 }
+

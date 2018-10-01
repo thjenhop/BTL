@@ -1,4 +1,4 @@
-package com.company.BTL;
+package com.company;
 
 import java.util.Vector;
 

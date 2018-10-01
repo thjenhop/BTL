@@ -1,8 +1,11 @@
-package com.company.BTL;
+package com.company;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
+        DictionaryManagement option = new DictionaryManagement();
+        Dictionary dic = new Dictionary();
+        option.insertFromFile(dic.words);
     }
 }
