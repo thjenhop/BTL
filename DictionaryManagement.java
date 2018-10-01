@@ -80,5 +80,26 @@ public class DictionaryManagement {
             // ex.printStackTrace();
         }
     }
+    public Word dictionaryLookUp(Vector<Word> words, String word){
+       for(int i = 0; i < words.size(); i++){
+           if(words.get(i).word_target == word){
+               return words.get(i);
+           }
+       }
+
+        return new Word();
+
+    }
+    public void  dictionaryAdvanced(Vector<Word> words){
+        DictionaryManagement option = new DictionaryManagement();
+        option.insertFromFile(words);
+        
+        DictionaryCommandLine options = new DictionaryCommandLine();
+        options.showAllWords(words);
+
+        option.insertFromCommandLine(words);
+
+
+    }
 }
 
