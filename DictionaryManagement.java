@@ -32,7 +32,7 @@ public class DictionaryManagement {
     }
     public void insertFromFile(Vector<Word> words){
         // The name of the file to open.
-        String fileName = "dictionaries.txt";
+        String fileName = "C:\\Users\\Admin\\IdeaProjects\\BLT\\src\\com\\company\\dictionaries.txt";
 
         // This will reference one line at a time
         String line = null;
@@ -93,13 +93,36 @@ public class DictionaryManagement {
     public void  dictionaryAdvanced(Vector<Word> words){
         DictionaryManagement option = new DictionaryManagement();
         option.insertFromFile(words);
-        
+
         DictionaryCommandLine options = new DictionaryCommandLine();
         options.showAllWords(words);
 
         option.insertFromCommandLine(words);
 
 
+    }
+    public void addWord(Vector<Word> words, Word addWord){
+        words.add(addWord);
+    }
+
+    public void editWord(Vector<Word> words, String word, Word editWord){
+        for(int i = 0; i < words.size(); i++){
+            if(word == words.get(i).word_target){
+                words.set(i, editWord);
+                return;
+            }
+        }
+        return;
+    }
+
+    public void deleteWord(Vector<Word> words, String word){
+        for(int i = 0; i < words.size(); i++){
+            if(words.get(i).getWord_target() == word){
+               words.remove(i);
+               return;
+            }
+
+        }
     }
 }
 
