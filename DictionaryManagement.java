@@ -1,14 +1,16 @@
 package com.company;
 
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.List;
 import java.io.*;
 
 public class DictionaryManagement {
 
 
     private Scanner scan = new Scanner(System.in);
-    public  void insertFromCommandLine(Vector<Word> words){
+    public  void insertFromCommandLine(List<Word> words){
 
         System.out.print("Enter number of Disctionary: ");
         int num = scan.nextInt();
@@ -30,7 +32,7 @@ public class DictionaryManagement {
 
 
     }
-    public void insertFromFile(Vector<Word> words){
+    public void insertFromFile(List<Word> words){
         // The name of the file to open.
         String fileName = "C:\\Users\\Admin\\IdeaProjects\\BLT\\src\\com\\company\\dictionaries.txt";
 
@@ -50,7 +52,7 @@ public class DictionaryManagement {
             while((line = bufferedReader.readLine()) != null) {
                 for(int i = 0; i < line.length(); i++) {
                     if(line.charAt(i) == ' ') {
-                        String word = line.substring(i);
+                        String word = line.substring(0, i);
                         String mean = line.substring(i + 1, line.length());
                         i = line.length();
                         Word word1 = new Word(word, mean);
@@ -80,32 +82,41 @@ public class DictionaryManagement {
             // ex.printStackTrace();
         }
     }
-    public Word dictionaryLookUp(Vector<Word> words, String word){
+    public Word dictionaryLookUp(List<Word> words, String word){
        for(int i = 0; i < words.size(); i++){
-           if(words.get(i).word_target == word){
+           //System.out.println(words.get(i).getWord_target());
+           if(words.get(i).getWord_target().equals(word)){
+
                return words.get(i);
            }
        }
 
-        return new Word();
+        return new Word("", "");
 
     }
-    public void  dictionaryAdvanced(Vector<Word> words){
+    public void  dictionaryAdvanced(List<Word> words){
         DictionaryManagement option = new DictionaryManagement();
         option.insertFromFile(words);
 
         DictionaryCommandLine options = new DictionaryCommandLine();
-        options.showAllWords(words);
 
-        option.insertFromCommandLine(words);
+        System.out.println("Please enter the English Word you want Lookup: ");// chien binh lam
+        String wordLookUp = scan.nextLine();
+
+        Word word = option.dictionaryLookUp(words, wordLookUp);
+        System.out.println(word.getWord_target() + "       | " +
+                word.getWord_explain());
+
 
 
     }
-    public void addWord(Vector<Word> words, Word addWord){
+    public void addWord(List<Word> words, Word addWord){
+
+
         words.add(addWord);
     }
 
-    public void editWord(Vector<Word> words, String word, Word editWord){
+    public void editWord(List<Word> words, String word, Word editWord){
         for(int i = 0; i < words.size(); i++){
             if(word == words.get(i).word_target){
                 words.set(i, editWord);
@@ -115,14 +126,25 @@ public class DictionaryManagement {
         return;
     }
 
-    public void deleteWord(Vector<Word> words, String word){
+    public void deleteWord(List<Word> words){
+        String word = wordInput("Delete");
         for(int i = 0; i < words.size(); i++){
-            if(words.get(i).getWord_target() == word){
+            if(words.get(i).getWord_target().equals(word)){
                words.remove(i);
                return;
             }
 
         }
     }
+
+    public String wordInput(String option){
+        System.out.println("Please enter the word you want " + option + ": ");
+        String wordInput = scan.nextLine();
+        return wordInput;
+    }
+//    public void sortWord(List<Word> words){
+//        Word word = new Word();
+//        Collections.sort(words);
+//    }
 }
 

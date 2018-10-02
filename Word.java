@@ -1,4 +1,6 @@
 package com.company;
+
+import java.util.List;
 public class Word {
 
     String word_target;
@@ -30,5 +32,6 @@ public class Word {
         this.setWord_target(word);
         this.setWord_explain(mean);
     }
+
 }
 
