@@ -6,9 +6,9 @@ public class Main {
 
         DictionaryManagement option = new DictionaryManagement();
         Dictionary dic = new Dictionary();
-        option.dictionaryAdvanced(dic.words);
-        Word addWord = new Word("Computer", "may tinh");
-        option.addWord(dic.words, addWord);
-        DictionaryCommandLine option2 = new DictionaryCommandLine();
+        option.insertFromFile(dic.words);
+//        Word addWord = new Word("Computer", "may tinh");
+//        option.addWord(dic.words, addWord);
+//        DictionaryCommandLine option2 = new DictionaryCommandLine();
     }
 }

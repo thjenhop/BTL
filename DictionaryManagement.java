@@ -1,9 +1,10 @@
 package com.company;
 
+import com.company.Word;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.Vector;
 import java.util.List;
+import java.util.Comparator;
 import java.io.*;
 
 public class DictionaryManagement {
@@ -60,7 +61,7 @@ public class DictionaryManagement {
                     }
                 }
 
-               // System.out.println(line);
+               //System.out.println(line);
             }
             DictionaryCommandLine show = new DictionaryCommandLine();
             show.showAllWords(words);
@@ -100,12 +101,12 @@ public class DictionaryManagement {
 
         DictionaryCommandLine options = new DictionaryCommandLine();
 
-        System.out.println("Please enter the English Word you want Lookup: ");// chien binh lam
-        String wordLookUp = scan.nextLine();
-
-        Word word = option.dictionaryLookUp(words, wordLookUp);
-        System.out.println(word.getWord_target() + "       | " +
-                word.getWord_explain());
+//        System.out.println("Please enter the English Word you want Lookup: ");// chien binh lam
+//        String wordLookUp = scan.nextLine();
+//
+//        Word word = option.dictionaryLookUp(words, wordLookUp);
+//        System.out.println(word.getWord_target() + "       | " +
+//                word.getWord_explain());
 
 
 
@@ -143,8 +144,8 @@ public class DictionaryManagement {
         return wordInput;
     }
 //    public void sortWord(List<Word> words){
-//        Word word = new Word();
-//        Collections.sort(words);
+//        Comparator<Word> comparator = new Word();
+//        Collections.sort(words, comparator);
 //    }
 }
 

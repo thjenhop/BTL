@@ -10,6 +10,7 @@ public class DictionaryCommandLine {
         for(int i = 0; i < words.size(); i++){
             System.out.println(i + 1 + "    | " + words.get(i).getWord_target() + "       | " +
                     words.get(i).getWord_explain());
+            //words.get(i)
         }
 
     }
