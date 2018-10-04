@@ -1,3 +1,37 @@
-link web: 3000Words
-
-https://www.ef.com/english-resources/english-vocabulary/top-3000-words/
+abandon     bỏ, từ bỏ
+abandoned    bị bỏ rơi, bị ruồng bỏ
+ability      khả năng, năng lực
+able        có năng lực, có tài
+unable       không có năng lực, không có tài
+about        khoảng, về
+above        ở trên, lên trên
+abroad       ở, ra nước ngoài, ngoài trời
+absence      sự vắng mặt
+absent       vắng mặt, nghỉ
+absolute     tuyệt đối, hoàn toàn
+absolutely   tuyệt đối, hoàn toàn
+absorb       thu hút, hấp thu, lôi cuốn
+abuse        lộng hành, lạm dụng
+academic     thuộc học viện, ĐH, viện hàn lâm
+accent       trọng âm, dấu trọng âm
+accept       chấp nhận, chấp thuận
+acceptable   có thể chấp nhận, chấp thuận
+access       lối, cửa, đường vào
+accident     tai nạn, rủi ro
+accidental   tình cờ, bất ngờ
+accidentally     tình cờ, ngẫu nhiên
+accommodation    sự thích nghi, điều tiết
+accompany    đi theo, đi cùng, kèm theo
+according    theo, y theo
+account      tài khoản, kế toán; tính toán, tính đến
+accurate     đúng đắn, chính xác, xác đáng
+accurately   đúng đắn, chính xác
+accuse        tố cáo, buộc tội, kết tội
+achieve       đạt được, dành được
+achievement      thành tích, thành tựu
+acid         axit
+acknowledge      công nhận, thừa nhận
+acquire      dành được, đạt được, kiếm được
+across       qua, ngang qua
+act          hành động, hành vi, cử chỉ, đối xử
+action       hành động, hành vi, tác động
