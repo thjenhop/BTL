@@ -1,25 +1,32 @@
 package com.company;
 
-import com.company.Word;
-import java.util.Collections;
+
+import jdk.nashorn.internal.runtime.OptimisticReturnFilters;
+
 import java.util.Scanner;
 import java.util.List;
-import java.util.Comparator;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DictionaryManagement {
 
 
+    String fileName = "dictionaries.txt";
+
     private Scanner scan = new Scanner(System.in);
-    public  void insertFromCommandLine(List<Word> words){
+    public  void insertFromCommandLine(ArrayList<Word> words){
 
         System.out.print("Enter number of Disctionary: ");
         int num = scan.nextInt();
-
-        Word temp = new Word();
+        scan.nextLine();
 
         for(int i = 0; i < num; i++){
-            System.out.println("Word:" + i + 1);
+
+            Word temp = new Word();
+
+            System.out.println("Word:" + (i + 1));
             System.out.print("Enter English word: ");
 
             temp.setWord_target(scan.nextLine());
@@ -30,60 +37,56 @@ public class DictionaryManagement {
             words.add(temp);
 
         }
+        DictionaryCommandLine option = new DictionaryCommandLine();
+        option.showAllWords(words);
+
 
 
     }
-    public void insertFromFile(List<Word> words){
+    public void insertFromFile(ArrayList<Word> words){
         // The name of the file to open.
-        String fileName = "C:\\Users\\Admin\\IdeaProjects\\BLT\\src\\com\\company\\dictionaries.txt";
+
+
 
         // This will reference one line at a time
         String line = null;
-
         try {
-            // FileReader reads text files in the default encoding.
-            FileReader fileReader =
-                    new FileReader(fileName);
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            while((line = reader.readLine()) != null){
+//                String wordLine[] = line.split(" ");
+//                String target = wordLine[0];
+//                String explain = wordLine[1];
+//                if(wordLine.length<= 10) System.out.println(line);
+//                String target;
+//                String explain;
+//                int i = 0;
+//                while(line.charAt(i) != ' '){
+//                    i++;
+//                }
+//                target = line.substring(0, i );
+//                explain = line.substring(i + 3, line.length());
 
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
 
-
-            while((line = bufferedReader.readLine()) != null) {
-                for(int i = 0; i < line.length(); i++) {
-                    if(line.charAt(i) == ' ') {
-                        String word = line.substring(0, i);
-                        String mean = line.substring(i + 1, line.length());
-                        i = line.length();
-                        Word word1 = new Word(word, mean);
-                        words.add(word1);
-                    }
-                }
-
-               //System.out.println(line);
+                Word w = convertStringToWord(line);
+                words.add(w);
             }
-            DictionaryCommandLine show = new DictionaryCommandLine();
-            show.showAllWords(words);
+            DictionaryCommandLine option = new DictionaryCommandLine();
+            option.showAllWords(words);
 
-
-            // Always close files.
-            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DictionaryManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DictionaryManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                    "Unable to open file '" +
-                            fileName + "'");
-        }
-        catch(IOException ex) {
-            System.out.println(
-                    "Error reading file '"
-                            + fileName + "'");
-            // Or we could just do this:
-            // ex.printStackTrace();
-        }
+        return;
     }
-    public Word dictionaryLookUp(List<Word> words, String word){
+
+
+    public Word dictionaryLookUp(List<Word> words){
+
+        System.out.println("Please enter the English Word you want Lookup: ");
+        String word = scan.nextLine();
+
        for(int i = 0; i < words.size(); i++){
            //System.out.println(words.get(i).getWord_target());
            if(words.get(i).getWord_target().equals(word)){
@@ -92,60 +95,92 @@ public class DictionaryManagement {
            }
        }
 
-        return new Word("", "");
+        return new Word(word, "Not found in Dictionary");
 
     }
-    public void  dictionaryAdvanced(List<Word> words){
-        DictionaryManagement option = new DictionaryManagement();
-        option.insertFromFile(words);
-
-        DictionaryCommandLine options = new DictionaryCommandLine();
-
-//        System.out.println("Please enter the English Word you want Lookup: ");// chien binh lam
-//        String wordLookUp = scan.nextLine();
-//
-//        Word word = option.dictionaryLookUp(words, wordLookUp);
-//        System.out.println(word.getWord_target() + "       | " +
-//                word.getWord_explain());
 
 
 
-    }
-    public void addWord(List<Word> words, Word addWord){
-
-
+    public void addWord(List<Word> words){
+        System.out.println("Adding new word in Dictinary\n");
+        System.out.println("Enter word you want add: ");
+        String word = scan.nextLine();
+        System.out.println("Enter mean of word add: ");
+        String mean = scan.nextLine();
+        Word addWord = new Word(word, mean);
         words.add(addWord);
     }
 
-    public void editWord(List<Word> words, String word, Word editWord){
+    public void editWord(List<Word> words){
+
+        System.out.println("Editing new word in Dictinary\n");
+        System.out.println("Enter word you want edit: ");
+        String word = scan.nextLine();
+
+        System.out.println("Enter word after edit: ");
+        String newWord = scan.nextLine();
+        System.out.println("Enter mean of word after edit: ");
+        String mean = scan.nextLine();
         for(int i = 0; i < words.size(); i++){
-            if(word == words.get(i).word_target){
+            if(words.get(i).word_target.equals(word)){
+                Word editWord = new Word(newWord, mean);
                 words.set(i, editWord);
+                System.out.println("Success edited");
                 return;
             }
         }
+        System.out.println("Error:" + word + " not in Dictionary");
         return;
     }
 
-    public void deleteWord(List<Word> words){
-        String word = wordInput("Delete");
+
+    public void deleteWord(ArrayList<Word> words){
+
+        System.out.println("Enter word you want delete: ");
+        String word = scan.nextLine();
+
+
         for(int i = 0; i < words.size(); i++){
             if(words.get(i).getWord_target().equals(word)){
-               words.remove(i);
-               return;
+                words.remove(i);
+                System.out.println("Success Deleteed word in Dictionary: " + word);
+                return;
             }
 
         }
+        System.out.println("Error. Word " + word + " not in Dictionary" );
+        return;
+    }
+    public Word convertStringToWord(String s){
+        int i = 0;
+        while(s.charAt(i) == ' ' && i < s.length()){
+            i++;
+        }
+        int first = i;
+
+        while(s.charAt(i) != ' ' && i < s.length()){
+            i++;
+        }
+        String word = s.substring(first, i);
+
+        first = i + 1;
+        i++;
+        while(s.charAt(i) != '.' && i < s.length()){
+            i++;
+        }
+        String typeWord = s.substring(first, i);
+        first = i++;
+        while(s.charAt(i) != ' ' && i < s.length()){
+            i++;
+        }
+        String pronunciation = s.substring(first, i);
+        i++;
+        String mean = s.substring(i + 1, s.length());
+
+        return new Word(word, mean, typeWord, pronunciation);
     }
 
-    public String wordInput(String option){
-        System.out.println("Please enter the word you want " + option + ": ");
-        String wordInput = scan.nextLine();
-        return wordInput;
-    }
-//    public void sortWord(List<Word> words){
-//        Comparator<Word> comparator = new Word();
-//        Collections.sort(words, comparator);
-//    }
+
+
+
 }
-
